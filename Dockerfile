@@ -97,4 +97,4 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
     && rm -r /opencv-$OPENCV_VERSION
 
 ## Compress the openCV files so you can extract them from the docker easily 
-RUN tar cvzf opencv-$OPENCV_VERSION.tar.gz $OPENCV_INSTALL_PATH
+RUN tar cvzf opencv-$OPENCV_VERSION.tar.gz --directory=$OPENCV_INSTALL_PATH .
