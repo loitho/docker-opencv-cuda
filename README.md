@@ -23,3 +23,8 @@ This will copy the opencv binaries and libs from the docker image to your main s
 You can then enter the following command to install it :
 
 `sudo tar xvf opencv-3.4.0.tar.gz  -p -C /usr/`
+
+
+## Special thanks :
+
+Thanks to Janza for the help provided by this https://github.com/janza/docker-python3-opencv
