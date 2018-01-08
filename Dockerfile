@@ -71,16 +71,17 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
     && cd /opencv-$OPENCV_VERSION/cmake_binary \
     && cmake -DBUILD_TIFF=ON \
        -DBUILD_opencv_java=OFF \
+       -DBUILD_SHARED_LIBS=OFF \
        -DWITH_CUDA=ON \
        # -DENABLE_FAST_MATH=1 \
        # -DCUDA_FAST_MATH=1 \
        # -DWITH_CUBLAS=1 \
        -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-8.0 \
        -DENABLE_AVX=ON \
-       -DWITH_OPENGL=ON \
-       -DWITH_OPENCL=ON \
-       -DWITH_IPP=ON \
-       -DWITH_TBB=ON \
+       -DWITH_OPENGL=OFF \
+       -DWITH_OPENCL=OFF \
+       -DWITH_IPP=OFF \
+       -DWITH_TBB=OFF \
        -DWITH_EIGEN=ON \
        -DWITH_V4L=ON \
        -DBUILD_TESTS=OFF \
