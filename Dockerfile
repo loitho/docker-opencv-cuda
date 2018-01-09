@@ -121,10 +121,18 @@ RUN apt-get update && \
 	libtbb-dev \
 	libgtk2.0-dev \
 	pkg-config \
+        ##
+        ## Python
+        python-dev \
+        python-numpy \
+        python3-dev \
+        python3-numpy \
+	## VTK
+	#libvtk6-dev \
     ## Cleanup
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install numpy
+#RUN pip install numpy
 
 ## Create install directory
 ## Force success as the only reason for a fail is if it exist
@@ -147,7 +155,16 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
        # -DCUDA_FAST_MATH=1 \
        # -DWITH_CUBLAS=1 \
        -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-8.0 \
-       -DENABLE_AVX=ON \
+       ##
+       ## Should compile for most card
+       ## 3.5 binary code for devices with compute capability 3.5 and 3.7,
+       ## 5.0 binary code for devices with compute capability 5.0 and 5.2,
+       ## 6.0 binary code for devices with compute capability 6.0 and 6.1,
+       -DCUDA_ARCH_BIN='3.0 3.5 5.0 6.0 6.2' \
+       -DCUDA_ARCH_PTX="" \
+       ##
+       ## Disable AVX because not all machines have it
+       -DENABLE_AVX=OFF \
        -DENABLE_PRECOMPILED_HEADERS=OFF \
        -DWITH_OPENGL=OFF \
        -DWITH_OPENCL=OFF \
