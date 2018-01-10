@@ -14,6 +14,8 @@ ARG http_proxy
 ###  CUDA   INSTALL  ###
 ########################
 
+## Here we are just installing the CUDA toolkit
+##
 
 RUN NVIDIA_GPGKEY_SUM=d1be581509378368edeec8c1eb2958702feedf3bc3d17011adbf24efacce4ab5 && \
     NVIDIA_GPGKEY_FPR=ae09fe4bbd223a84b2ccfce3f60f4b3d7fa2af80 && \
@@ -163,13 +165,13 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
        -DCUDA_ARCH_BIN='3.0 3.5 5.0 6.0 6.2' \
        -DCUDA_ARCH_PTX="" \
        ##
-       ## Disable AVX because not all machines have it
-       -DENABLE_AVX=OFF \
+       ## AVX in dispatch because not all machines have it
+       -DCPU_DISPATCH=AVX,AVX2 \
        -DENABLE_PRECOMPILED_HEADERS=OFF \
        -DWITH_OPENGL=OFF \
        -DWITH_OPENCL=OFF \
        -DWITH_QT=OFF \
-       -DWITH_IPP=OFF \
+       -DWITH_IPP=ON \
        -DWITH_TBB=ON \
        -DFORCE_VTK=ON \
        -DWITH_EIGEN=ON \
