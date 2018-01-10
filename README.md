@@ -10,6 +10,11 @@ simply clone the repository and execute the command :
 
 `docker build -t opencv .`
 
+if you're behind a Proxy use (change the proxy with the proper address:
+
+`docker build -t opencv --build-arg http_proxy=http://10.0.0.1:3128 --build-arg https_proxy=http://10.0.0.1:3128 .`
+
+
 Building openCV will take a lot of ressources and time, be **patient**.
 Once built, you can retrieve the compiled opencv lib and binaries with the following commands :
 
